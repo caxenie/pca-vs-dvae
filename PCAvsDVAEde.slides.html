@@ -13248,6 +13248,13 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="PCA">PCA<a class="anchor-link" href="#PCA">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="PCA">PCA<a class="anchor-link" href="#PCA">&#182;</a></h1><ul>
 <li><strong>Unüberwachtes</strong> Lernen</li>
 <li><strong>Lineare Transformation</strong></li>
@@ -13289,6 +13296,13 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="Autoencoders">Autoencoders<a class="anchor-link" href="#Autoencoders">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Autoencoders">Autoencoders<a class="anchor-link" href="#Autoencoders">&#182;</a></h1><ul>
 <li>unüberwachtes <strong>neuronales Netz</strong></li>
 <li><strong>minimiert</strong> den Fehler zwischen Rekonstruktionen und Beobachtungen [Goodfellow et al., 2016]</li>
@@ -13306,6 +13320,13 @@ a.anchor-link {
 <h1 id="Autoencoders">Autoencoders<a class="anchor-link" href="#Autoencoders">&#182;</a></h1><p>Das folgende Schaubild zeigt eine typische <strong>Autoencoder Pipeline</strong></p>
 <p><img src="autoencoder-pipeline.png" alt=""></p>
 
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><h2 id="Funktionalit&#228;t">Funktionalit&#228;t<a class="anchor-link" href="#Funktionalit&#228;t">&#182;</a></h2>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13394,7 +13415,14 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-PCA">Grundlegende Mathematik der PCA<a class="anchor-link" href="#Grundlegende-Mathematik-der-PCA">&#182;</a></h2><h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><ul>
+<h2 id="Grundlegende-Mathematik-der-PCA">Grundlegende Mathematik der PCA<a class="anchor-link" href="#Grundlegende-Mathematik-der-PCA">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><ul>
 <li><p>Es sei $\{y_i\}^N_{i=1}$ eine Menge von $N$ Beobachtungs-Vektoren der Dimension $n$ mit $n\leq N$.</p>
 </li>
 <li><p>Eine <strong>lineare Transformation</strong> eines <strong>endlich-dimensionalen</strong> Vektors kann als <strong>Matrix Multiplikation</strong> ausgedrückt werden:</p>
@@ -13409,7 +13437,7 @@ $$ \begin{align} x_i = W y_i \end{align} $$<p></p>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-PCA">Grundlegende Mathematik der PCA<a class="anchor-link" href="#Grundlegende-Mathematik-der-PCA">&#182;</a></h2><h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><ul>
+<h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><ul>
 <li>Das $j-te$ Element in $x_i$ ist das <strong>Innere Produkt</strong> von $y_i$ und der $j-ten$ Spalte der Matrix $W$, welche wir durch $w_j$ bezeichen. Es sei $Y \in R^{nxN}$ die Matrix, welche wir durch horizontale Aneinanderreihung der Vektoren $\{y_i\}^N_{i=1}$ erhalten, </li>
 </ul>
 $$ Y = \begin{bmatrix} | ... | \\ y_1 ... y_N \\ | ... | \end{bmatrix} $$<ul>
@@ -13433,7 +13461,7 @@ $$ X = W^TY,  X_0 = W^TY_0, $$<p>wobei $Y_0$ die <strong>Matrix der zentrierten 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dimensionsreduzierung,-Komprimierung,-Skalierung">Dimensionsreduzierung, Komprimierung, Skalierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung,-Skalierung">&#182;</a></h3><p>PCA wird zur <strong>Dimensions-Reduktion</strong> verwendet, da sie durch die durch eine lineare Transformation die <strong>Anzahl der Variablen reduziert</strong>. Dies wird erreicht, indem man die ersten $m$ Hauptkomponenten $(m &lt; n)$ erhält und die folgende Gleichung anwendet:</p>
+<h3 id="Dimensionsreduzierung,-Komprimierung">Dimensionsreduzierung, Komprimierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung">&#182;</a></h3><p>PCA wird zur <strong>Dimensions-Reduktion</strong> verwendet, da sie durch die durch eine lineare Transformation die <strong>Anzahl der Variablen reduziert</strong>. Dies wird erreicht, indem man die ersten $m$ Hauptkomponenten $(m &lt; n)$ erhält und die folgende Gleichung anwendet:</p>
 $$ X_m = P_m^TY$$<p>Da nur die ersten $m$ Hauptkomponenten erhalten werden, <strong>verliert</strong> PCA <strong>information</strong> (d.h. <strong>verlustreiche Komprimierung</strong>). Der <strong>Verlust</strong> wird jedoch durch die <strong>Maximierung der Komponenten-Varianzen minimiert</strong>.</p>
 
 </div>
@@ -13442,7 +13470,7 @@ $$ X_m = P_m^TY$$<p>Da nur die ersten $m$ Hauptkomponenten erhalten werden, <str
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dimensionsreduzierung,-Komprimierung,-Skalierung">Dimensionsreduzierung, Komprimierung, Skalierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung,-Skalierung">&#182;</a></h3><p>Zur Berechung der $m$ größten Eigenwerte von $Y_0Y_0^T$ können viele verschiedene <strong>iterative Algorithmen</strong> eingesetzt werden</p>
+<h3 id="Skalierung">Skalierung<a class="anchor-link" href="#Skalierung">&#182;</a></h3><p>Zur Berechung der $m$ größten Eigenwerte von $Y_0Y_0^T$ können viele verschiedene <strong>iterative Algorithmen</strong> eingesetzt werden</p>
 <ul>
 <li>QR Algorithmen</li>
 <li>Jacobi Algorithmus</li>
@@ -13488,10 +13516,17 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Experiment-Parametrierung">Experiment Parametrierung<a class="anchor-link" href="#Experiment-Parametrierung">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[3]:</div>
+<div class="prompt input_prompt">In&nbsp;[1]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># training params for PCA vs. DVAE</span>
@@ -13509,7 +13544,7 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[150]:</div>
@@ -13517,13 +13552,11 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># get the MNIST digits</span>
 <span class="p">(</span><span class="n">x_train</span><span class="p">,</span> <span class="n">y_train</span><span class="p">),</span> <span class="p">(</span><span class="n">x_test</span><span class="p">,</span> <span class="n">y_test</span><span class="p">)</span> <span class="o">=</span> <span class="n">mnist</span><span class="o">.</span><span class="n">load_data</span><span class="p">()</span>
-
 <span class="c1"># prepare data for PCA</span>
 <span class="c1"># training</span>
 <span class="n">x_test_pca</span> <span class="o">=</span> <span class="n">x_test</span>
 <span class="n">shape_x_test</span> <span class="o">=</span> <span class="n">x_test_pca</span><span class="o">.</span><span class="n">shape</span>                                                               
 <span class="n">pcaInputTest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="p">,[</span><span class="n">shape_x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">shape_x_test</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">shape_x_test</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">/</span><span class="mi">255</span>
-
 <span class="c1"># prepare data for DVAE                                      </span>
 <span class="n">x_train</span> <span class="o">=</span> <span class="n">x_train</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
 <span class="n">x_test</span> <span class="o">=</span> <span class="n">x_test</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span> <span class="o">/</span> <span class="mf">255.</span>
@@ -13540,7 +13573,7 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[140]:</div>
@@ -13550,12 +13583,10 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 <span class="n">digit_size</span> <span class="o">=</span> <span class="mi">28</span>
 <span class="n">figure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">digit_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">digit_size</span> <span class="o">*</span> <span class="n">n_images</span><span class="p">))</span>
 <span class="n">showidx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_train</span><span class="p">,</span><span class="n">n_images</span><span class="p">)</span>
-
 <span class="c1"># display input, noisy input</span>
 <span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">showidx</span><span class="p">):</span>
     <span class="n">figure</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span>
     <span class="n">figure</span><span class="p">[</span><span class="mi">28</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">noise_train</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span>
-
 <span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="n">n_images</span><span class="p">))</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
@@ -13591,7 +13622,14 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-Autoencoder">Grundlegende Mathematik der Autoencoder<a class="anchor-link" href="#Grundlegende-Mathematik-der-Autoencoder">&#182;</a></h2><p>Für jeden Eingangsvektor $x$ der Dimension $d$ des kompletten Datensaztes der Länge $n$ generiert das neuronale Netz eine Rekonstruktion $x'$ durch:</p>
+<h2 id="Grundlegende-Mathematik-der-Autoencoder">Grundlegende Mathematik der Autoencoder<a class="anchor-link" href="#Grundlegende-Mathematik-der-Autoencoder">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Für jeden Eingangsvektor $x$ der Dimension $d$ des kompletten Datensaztes der Länge $n$ generiert das neuronale Netz eine Rekonstruktion $x'$ durch:</p>
 <ul>
 <li><strong>Kodierung der Eingangsdaten</strong> (d.h. verwende die lineare / nicht-lineare Transformation $g_\phi(.)$)</li>
 <li>dies liefert eine <strong>verborgende, komprimierte Kodierung</strong> in der dünnsten Netzwerk-Ebene, $z$</li>
@@ -13605,7 +13643,7 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-Autoencoder">Grundlegende Mathematik der Autoencoder<a class="anchor-link" href="#Grundlegende-Mathematik-der-Autoencoder">&#182;</a></h2><p>Die <strong>Parameter $(\theta, \phi)$ werden im Verlauf des Training derart optimiert</strong>, dass ein den Eingangsdaten möglichst ähnliches Ergebnis , $x \approx f_\theta(g_\phi(x))$, produziert wird. In anderen Worten: <strong>die Indentitäts-Funktion wird erlernt</strong>.</p>
+<p>Die <strong>Parameter $(\theta, \phi)$ werden im Verlauf des Training derart optimiert</strong>, dass ein den Eingangsdaten möglichst ähnliches Ergebnis , $x \approx f_\theta(g_\phi(x))$, produziert wird. In anderen Worten: <strong>die Indentitäts-Funktion wird erlernt</strong>.</p>
 <p><strong>Metriken um die Ähnlichkeit zwischen Eingangsdaten und Rekonstruktion</strong>: <strong>Cross-Entropy (bei sigmoid Aktivierungsfuntionen)</strong>, <strong>mittlere quadratische Fehler (MSE)</strong> etc.:</p>
 $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="autoencoder.png" alt=""></p>
 
@@ -13615,7 +13653,14 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Denoising-Variational-Autoencoders-(DVAE)">Denoising Variational Autoencoders (DVAE)<a class="anchor-link" href="#Denoising-Variational-Autoencoders-(DVAE)">&#182;</a></h1><p>Das Funktionsprinzip <strong>unterscheidet sich</strong> vom grundlegenden Autoencoder dahingehend, dass ein gewisses Maß an <strong>Störrauschen</strong>  (einer <strong>gewissen Wahrscheinlichkeitsverteilung</strong> folgend) den <strong>Eingangsdaten hinzugefügt wird</strong> und dass die <strong>verborgenen Ebenen</strong> dieses Rauschen ausgleichen muss um die Eingangsdaten zu <strong>rekonstruieren</strong> [Im, Bengio et al., 2017, Kingma et al., 2017].</p>
+<h1 id="Denoising-Variational-Autoencoders-(DVAE)">Denoising Variational Autoencoders (DVAE)<a class="anchor-link" href="#Denoising-Variational-Autoencoders-(DVAE)">&#182;</a></h1>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>Das Funktionsprinzip <strong>unterscheidet sich</strong> vom grundlegenden Autoencoder dahingehend, dass ein gewisses Maß an <strong>Störrauschen</strong>  (einer <strong>gewissen Wahrscheinlichkeitsverteilung</strong> folgend) den <strong>Eingangsdaten hinzugefügt wird</strong> und dass die <strong>verborgenen Ebenen</strong> dieses Rauschen ausgleichen muss um die Eingangsdaten zu <strong>rekonstruieren</strong> [Im, Bengio et al., 2017, Kingma et al., 2017].</p>
 <p><img src="denoising-variational-autoencoder.png" alt=""></p>
 
 </div>
@@ -13624,7 +13669,7 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Denoising-Variational-Autoencoders-(DVAE)">Denoising Variational Autoencoders (DVAE)<a class="anchor-link" href="#Denoising-Variational-Autoencoders-(DVAE)">&#182;</a></h1><p>Für jeden gestörten Eingangsvektor $\tilde x$ eines originalen Vektors $x$ der Dimension $d$, generiert das neuronale Netz eine Rekonstruktion $x'$ durch:</p>
+<p>Für jeden gestörten Eingangsvektor $\tilde x$ eines originalen Vektors $x$ der Dimension $d$, generiert das neuronale Netz eine Rekonstruktion $x'$ durch:</p>
 <ul>
 <li><strong>Kodierung der Eingangsdaten</strong>, welche die Abbildung als Wahrscheinlichkeit der Schätzung von $z$ unter Verwendung der Eingangsdaten darstellt</li>
 <li>dies liefert eine <strong>verborgende, komprimierte Kodierung in der dünnsten Netzwerk-Ebene</strong> $z$, welche der Verteilung $q_\phi(z|x)$ folgt</li>
@@ -13657,7 +13702,7 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[7]:</div>
@@ -13678,7 +13723,7 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[8]:</div>
@@ -13706,7 +13751,14 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-DVAE">Grundlegende Mathematik der DVAE<a class="anchor-link" href="#Grundlegende-Mathematik-der-DVAE">&#182;</a></h2><p>Die <strong>Verlustfunktion zur Wiederherstellung</strong> der ursprünglichen Eingangsdaten (<strong>nicht die gestörten</strong>), $\tilde{x}^{i} = M(\tilde{x}^{i} | x^{i}) $.</p>
+<h2 id="Grundlegende-Mathematik-der-DVAE">Grundlegende Mathematik der DVAE<a class="anchor-link" href="#Grundlegende-Mathematik-der-DVAE">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="DVAE">DVAE<a class="anchor-link" href="#DVAE">&#182;</a></h2><p>Die <strong>Verlustfunktion zur Wiederherstellung</strong> der ursprünglichen Eingangsdaten (<strong>nicht die gestörten</strong>), $\tilde{x}^{i} = M(\tilde{x}^{i} | x^{i}) $.</p>
 <p>DVAE <strong>Verlustfunktion</strong> beinhaltet die Erstellung von Beispielen aus $z \backsim q_\phi(z|x)$. Dies ist ein <strong>stochastischer Prozess</strong> und eignet sich daher <strong>nicht zur Fehlerrückführung</strong>.</p>
 
 </div>
@@ -13715,7 +13767,9 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-DVAE">Grundlegende Mathematik der DVAE<a class="anchor-link" href="#Grundlegende-Mathematik-der-DVAE">&#182;</a></h2><p>Die <strong>geschätzte Posteriori-Verteilung $q_\phi(z|x)$</strong> approximiert die tatsächliche Verteilung $p_\theta(z|x)$. Wir können die <strong>Kullback-Leibler Abweichung</strong> benutzen um die <strong>Differenz der beiden Verteilungen</strong> zu quantifizieren. Die KL Abweichung $D_{KL}(X∥Y)$ misst den <strong>Informationsverlust</strong> wenn die Verteilung Y verwendet wird um X darzustellen.</p>
+<h2 id="DVAE">DVAE<a class="anchor-link" href="#DVAE">&#182;</a></h2><p>Die <strong>geschätzte Posteriori-Verteilung $q_\phi(z|x)$</strong> approximiert die tatsächliche Verteilung $p_\theta(z|x)$.</p>
+<p>Wir können die <strong>Kullback-Leibler Abweichung</strong> benutzen um die <strong>Differenz der beiden Verteilungen</strong> zu quantifizieren.</p>
+<p>Die KL Abweichung $D_{KL}(X∥Y)$ misst den <strong>Informationsverlust</strong> wenn die Verteilung Y verwendet wird um X darzustellen.</p>
 
 </div>
 </div>
@@ -13723,7 +13777,7 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-DVAE">Grundlegende Mathematik der DVAE<a class="anchor-link" href="#Grundlegende-Mathematik-der-DVAE">&#182;</a></h2><p>Bei <strong>abweichenden Bayesischen Methoden</strong> wird die Verlustfunktion auch die abweichende untere Schranke oder auch <strong>evidence lower bound (ELBO)</strong> genannt.</p>
+<h2 id="DVAE">DVAE<a class="anchor-link" href="#DVAE">&#182;</a></h2><p>Bei <strong>abweichenden Bayesischen Methoden</strong> wird die Verlustfunktion auch die abweichende untere Schranke oder auch <strong>evidence lower bound (ELBO)</strong> genannt.</p>
 <p>Durch <strong>Minimierung des Verlusts</strong>, <strong>maximieren</strong> wir daher die <strong>untere Schranke der Wahrscheinlichkeit</strong> zur Generierung echter Daten-Beispiele.</p>
 
 </div>
@@ -13819,7 +13873,7 @@ ________________________________________________________________________________
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[12]:</div>
@@ -13888,7 +13942,7 @@ Epoch 10/10
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[142]:</div>
@@ -13908,7 +13962,7 @@ Epoch 10/10
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[143]:</div>
@@ -13956,7 +14010,7 @@ Epoch 10/10
 </div>
 </div>
 
-</div></section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13976,39 +14030,7 @@ Epoch 10/10
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Vergleich-von-PCA-und-DVAE">Vergleich von PCA und DVAE<a class="anchor-link" href="#Vergleich-von-PCA-und-DVAE">&#182;</a></h1><h3 id="Lernen-der-Mannigfaltigkeit">Lernen der Mannigfaltigkeit<a class="anchor-link" href="#Lernen-der-Mannigfaltigkeit">&#182;</a></h3><table>
-<thead><tr>
-<th style="text-align:left"><strong>PCA</strong></th>
-<th style="text-align:left"><strong>DVAE</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Kodierung/Dekodierung, keine Robustheit gegen Rauschen</td>
-<td style="text-align:left">nicht-linear, probabilistische Kodierung/Dekodierung mit Robustheit gegen Rauschen und nicht-linearen Aktivierungsfunktionen</td>
-</tr>
-<tr>
-<td style="text-align:left">unkorrelierte Koordinaten</td>
-<td style="text-align:left">korrelierte Ausgansdaten an der dünnsten Netzwerkebene</td>
-</tr>
-<tr>
-<td style="text-align:left">Koordinaten sind in absteigener Reihenfolge der Varianz geordnet</td>
-<td style="text-align:left">Koordinaten sind ungeordnet</td>
-</tr>
-<tr>
-<td style="text-align:left">die Spalten der Transformations-Matrix sind orthonormal</td>
-<td style="text-align:left">die Spalten der Transformations-Matrix sind nicht notwendigerweise orthonormal</td>
-</tr>
-<tr>
-<td style="text-align:left">Robustheit gegenüber moderatem Rauschen mit bekannten Verteilungen</td>
-<td style="text-align:left">Robustheit gegen eine Vielzahl verschiedener Arten und Größenordnungen an injeziertem Rauschen (masking noise, Gaussian noise, salt-and-pepper noise), da das Entrauschen entscheidung für die Generalisierung ist</td>
-</tr>
-<tr>
-<td style="text-align:left">einfacher Algorithmus (ohne Regularisierung), geringe Robustheit</td>
-<td style="text-align:left">die Punkte in niedrig-dimensionalen Mannifaltigkeiten sind robust gegen Rauschen im hoch-dimensionalen Beobachtungs-Raum</td>
-</tr>
-</tbody>
-</table>
+<h1 id="Vergleich-zwischen-PCA-und-DVAE">Vergleich zwischen PCA und DVAE<a class="anchor-link" href="#Vergleich-zwischen-PCA-und-DVAE">&#182;</a></h1><p><img src="comparison-learning.png" alt=""></p>
 
 </div>
 </div>
@@ -14016,31 +14038,7 @@ Epoch 10/10
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="Vergleich-zwischen-PCA-und-DVAE">Vergleich zwischen PCA und DVAE<a class="anchor-link" href="#Vergleich-zwischen-PCA-und-DVAE">&#182;</a></h1><h3 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h3><table>
-<thead><tr>
-<th style="text-align:left"><strong>PCA</strong></th>
-<th style="text-align:left"><strong>DVAE</strong></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td style="text-align:left">Abbildung der Eingangsdaten auf einen festen Vektor</td>
-<td style="text-align:left">Abbildung der Eingangsdaten auf eine Wahrscheinlichkeitsverteilung</td>
-</tr>
-<tr>
-<td style="text-align:left">iterative Methoden: QR Zerlegung, Jacobi Algorithmus, Singulärwertzerlegung</td>
-<td style="text-align:left">Fehlerrückführung (Backpropagation)</td>
-</tr>
-<tr>
-<td style="text-align:left">aufgrund der Kovarianz-Berechnung ineffizient bei großen Datenmengen</td>
-<td style="text-align:left">effizient bei großen Datenmengen aufgrund der starken Fähigkeit des Erlernens der Mannigfaltigkeit</td>
-</tr>
-<tr>
-<td style="text-align:left">basiert auf der Korrelations-/Kovarianz-Matrix, welche - zumindest in der Theorie - sehr empfindlich gegenüber Ausreißern sein kann</td>
-<td style="text-align:left">kann Beispiele direkt aus dem Eingangsraum generieren und daher die Eigenschfaten des Eingangsrauschens beschreiben ("reparametrization trick")</td>
-</tr>
-</tbody>
-</table>
+<h1 id="Vergleich-zwischen-PCA-und-DVAE">Vergleich zwischen PCA und DVAE<a class="anchor-link" href="#Vergleich-zwischen-PCA-und-DVAE">&#182;</a></h1><p><img src="comparison-training.png" alt=""></p>
 
 </div>
 </div>
@@ -14091,6 +14089,87 @@ $$Av =\lambda v$$<p>wobei $λ$ ein skalarer Wert ist, welcher als der <strong>zu
 <h3 id="Singul&#228;rwert-Zerlegung">Singul&#228;rwert-Zerlegung<a class="anchor-link" href="#Singul&#228;rwert-Zerlegung">&#182;</a></h3><h3 id="(Singular-Value-Decomposition,-SVD)">(Singular Value Decomposition, SVD)<a class="anchor-link" href="#(Singular-Value-Decomposition,-SVD)">&#182;</a></h3><p>Die Matrix $Y_0 \in R^{nxN}$ kann <strong>faktorisert</strong> werden als $Y_0 = U \Sigma V^T$, wobei $U \in R^{nxn}$ und $V \in R^{NxN}$ <strong>orthogonale Matrizen</strong> sind und $\Sigma \in R^{nxN}$ abgesehen von der Diagonalwerten (den sogenannten <strong>Singulär-Werten</strong>) nur aus Nullen besteht.</p>
 <p>Die Singulärwertzerlegung von $Y_0$ ist äquivalent zur <strong>Eigenwertzerlegung</strong> von $Y_0T_0^T$.</p>
 <p><img src="svd-graphic.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<style>
+td {
+  font-size: 15px
+}
+</style><h1 id="Vergleich-von-PCA-und-DVAE">Vergleich von PCA und DVAE<a class="anchor-link" href="#Vergleich-von-PCA-und-DVAE">&#182;</a></h1><h3 id="Lernen-der-Mannigfaltigkeit">Lernen der Mannigfaltigkeit<a class="anchor-link" href="#Lernen-der-Mannigfaltigkeit">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:left"><strong>PCA</strong></th>
+<th style="text-align:left"><strong>DVAE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Kodierung/Dekodierung, keine Robustheit gegen Rauschen</td>
+<td style="text-align:left">nicht-linear, probabilistische Kodierung/Dekodierung mit Robustheit gegen Rauschen und nicht-linearen Aktivierungsfunktionen</td>
+</tr>
+<tr>
+<td style="text-align:left">unkorrelierte Koordinaten</td>
+<td style="text-align:left">korrelierte Ausgansdaten an der dünnsten Netzwerkebene</td>
+</tr>
+<tr>
+<td style="text-align:left">Koordinaten sind in absteigener Reihenfolge der Varianz geordnet</td>
+<td style="text-align:left">Koordinaten sind ungeordnet</td>
+</tr>
+<tr>
+<td style="text-align:left">die Spalten der Transformations-Matrix sind orthonormal</td>
+<td style="text-align:left">die Spalten der Transformations-Matrix sind nicht notwendigerweise orthonormal</td>
+</tr>
+<tr>
+<td style="text-align:left">Robustheit gegenüber moderatem Rauschen mit bekannten Verteilungen</td>
+<td style="text-align:left">Robustheit gegen eine Vielzahl verschiedener Arten und Größenordnungen an injeziertem Rauschen (masking noise, Gaussian noise, salt-and-pepper noise), da das Entrauschen entscheidung für die Generalisierung ist</td>
+</tr>
+<tr>
+<td style="text-align:left">einfacher Algorithmus (ohne Regularisierung), geringe Robustheit</td>
+<td style="text-align:left">die Punkte in niedrig-dimensionalen Mannifaltigkeiten sind robust gegen Rauschen im hoch-dimensionalen Beobachtungs-Raum</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p><style>
+td {
+  font-size: 15px
+}
+</style></p>
+<h1 id="Vergleich-zwischen-PCA-und-DVAE">Vergleich zwischen PCA und DVAE<a class="anchor-link" href="#Vergleich-zwischen-PCA-und-DVAE">&#182;</a></h1><h3 id="Training">Training<a class="anchor-link" href="#Training">&#182;</a></h3><table>
+<thead><tr>
+<th style="text-align:left"><strong>PCA</strong></th>
+<th style="text-align:left"><strong>DVAE</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">Abbildung der Eingangsdaten auf einen festen Vektor</td>
+<td style="text-align:left">Abbildung der Eingangsdaten auf eine Wahrscheinlichkeitsverteilung</td>
+</tr>
+<tr>
+<td style="text-align:left">iterative Methoden: QR Zerlegung, Jacobi Algorithmus, Singulärwertzerlegung</td>
+<td style="text-align:left">Fehlerrückführung (Backpropagation)</td>
+</tr>
+<tr>
+<td style="text-align:left">aufgrund der Kovarianz-Berechnung ineffizient bei großen Datenmengen</td>
+<td style="text-align:left">effizient bei großen Datenmengen aufgrund der starken Fähigkeit des Erlernens der Mannigfaltigkeit</td>
+</tr>
+<tr>
+<td style="text-align:left">basiert auf der Korrelations-/Kovarianz-Matrix, welche - zumindest in der Theorie - sehr empfindlich gegenüber Ausreißern sein kann</td>
+<td style="text-align:left">kann Beispiele direkt aus dem Eingangsraum generieren und daher die Eigenschfaten des Eingangsrauschens beschreiben ("reparametrization trick")</td>
+</tr>
+</tbody>
+</table>
 
 </div>
 </div>
