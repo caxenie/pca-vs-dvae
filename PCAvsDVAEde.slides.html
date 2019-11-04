@@ -13311,27 +13311,7 @@ a.anchor-link {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><h2 id="Funktionalit&#228;t">Funktionalit&#228;t<a class="anchor-link" href="#Funktionalit&#228;t">&#182;</a></h2>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><ul>
-<li>Ein <strong>Autoencoder</strong> mit einer einzelnen <strong>voll verbundenen (fully-connected) versteckten Ebene</strong>, einer <strong>linearen Aktivierungsfunktion</strong> und dem <strong>quadratischen Fehler als Kostenfunktion</strong> ist <strong>eng mit der PCA verwandt</strong> - seine <strong>Gewichten</strong> spannen den <strong>Untervektorraum der Hauptkomponenten</strong> auf [Plaut, 2018]</li>
-</ul>
-<ul>
-<li>Bei <strong>Autoencodern</strong> sorgt die <strong>diagonale Approximation beim Kodiervorgang</strong> zusammen mit der <strong>inhärenten Stochastizität</strong> für lokale <strong>Orthogonalität beim Dekodieren</strong>  [Rolinek et al, 2019]</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><h1 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">&#182;</a></h1>
+<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><h2 id="Implementierung">Implementierung<a class="anchor-link" href="#Implementierung">&#182;</a></h2>
 </div>
 </div>
 </div></section></section><section><section>
@@ -13450,7 +13430,6 @@ $$ Y = \begin{bmatrix} | ... | \\ y_1 ... y_N \\ | ... | \end{bmatrix} $$<ul>
 <li>Aus der <strong>linearen Transformation</strong> folgt:</li>
 </ul>
 $$ X = W^TY,  X_0 = W^TY_0, $$<p>wobei $Y_0$ die <strong>Matrix der zentrierten Elemente</strong> (d.h. wir subtrahieren den Mittelwert von jeder Beobachtung) bezeichnet, und <strong>Kovarianzmatrix</strong> $Y_0Y_0^T$.</p>
-<p>Wenn $W^T$ Transformation darstellt, welche die <strong>Hauptkomponentenanalyse</strong> bezeichnet, so bezeichnen wir $W = P$.</p>
 
 </div>
 </div>
@@ -13458,8 +13437,8 @@ $$ X = W^TY,  X_0 = W^TY_0, $$<p>wobei $Y_0$ die <strong>Matrix der zentrierten 
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dimensionsreduzierung,-Komprimierung">Dimensionsreduzierung, Komprimierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung">&#182;</a></h3><p>PCA wird zur <strong>Dimensions-Reduktion</strong> verwendet, da sie durch die durch eine lineare Transformation die <strong>Anzahl der Variablen reduziert</strong>. Dies wird erreicht, indem man die ersten $m$ Hauptkomponenten $(m &lt; n)$ erhält und die folgende Gleichung anwendet:</p>
-$$ X_m = P_m^TY$$<p>Da nur die ersten <strong>$m$ Hauptkomponenten erhalten</strong> werden, <strong>verliert</strong> PCA <strong>information</strong> (d.h. <strong>verlustreiche Komprimierung</strong>).</p>
+<h3 id="Dimensionsreduzierung,-Komprimierung">Dimensionsreduzierung, Komprimierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung">&#182;</a></h3><p>PCA wird zur <strong>Dimensions-Reduktion</strong> verwendet, da sie durch die durch eine lineare Transformation die <strong>Anzahl der Variablen reduziert</strong>.</p>
+<p>Da nur die ersten <strong>$m$ Hauptkomponenten erhalten</strong> werden, <strong>verliert</strong> PCA <strong>information</strong> (d.h. <strong>verlustreiche Komprimierung</strong>).</p>
 <p>Der <strong>Verlust</strong> ( <em>Summe des quadratischen Rekonstruktions-Fehlers</em> ) wird jedoch durch die <strong>Maximierung der Komponenten-Varianzen minimiert</strong></p>
 $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ die Frobenius-Norm bezeichnet.</p>
 
@@ -13686,6 +13665,7 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 <span class="n">x_out</span><span class="o">=</span><span class="n">dvae</span><span class="o">.</span><span class="n">predict</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">showidx</span><span class="p">])</span>
 
 <span class="c1"># prepare data for testing PCA</span>
+<span class="n">pcaInputTest</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="p">,[</span><span class="n">shape_x_test</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">shape_x_test</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">*</span><span class="n">shape_x_test</span><span class="p">[</span><span class="mi">2</span><span class="p">]])</span><span class="o">.</span><span class="n">astype</span><span class="p">(</span><span class="s1">&#39;float32&#39;</span><span class="p">)</span><span class="o">/</span><span class="mi">255</span>
 <span class="n">pcaOutput</span> <span class="o">=</span> <span class="n">analytical_pca</span><span class="p">(</span><span class="n">pcaInputTest</span><span class="p">)</span>
 </pre></div>
 
@@ -13722,6 +13702,26 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Vergleich-zwischen-PCA-und-DVAE">Vergleich zwischen PCA und DVAE<a class="anchor-link" href="#Vergleich-zwischen-PCA-und-DVAE">&#182;</a></h1><p><img src="comparison-training.png" alt=""></p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><h2 id="&quot;Zwei-identische-Fremde&quot;">"Zwei identische Fremde"<a class="anchor-link" href="#&quot;Zwei-identische-Fremde&quot;">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h1 id="PCA-vs.-Autoencoders">PCA vs. Autoencoders<a class="anchor-link" href="#PCA-vs.-Autoencoders">&#182;</a></h1><ul>
+<li>Ein <strong>Autoencoder</strong> mit einer einzelnen <strong>voll verbundenen (fully-connected) versteckten Ebene</strong>, einer <strong>linearen Aktivierungsfunktion</strong> und dem <strong>quadratischen Fehler als Kostenfunktion</strong> ist <strong>eng mit der PCA verwandt</strong> - seine <strong>Gewichten</strong> spannen den <strong>Untervektorraum der Hauptkomponenten</strong> auf [Plaut, 2018]</li>
+</ul>
+<ul>
+<li>Bei <strong>Autoencodern</strong> sorgt die <strong>diagonale Approximation beim Kodiervorgang</strong> zusammen mit der <strong>inhärenten Stochastizität</strong> für lokale <strong>Orthogonalität beim Dekodieren</strong>  [Rolinek et al, 2019]</li>
+</ul>
 
 </div>
 </div>
