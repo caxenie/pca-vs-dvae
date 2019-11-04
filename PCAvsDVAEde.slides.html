@@ -13324,9 +13324,6 @@ a.anchor-link {
 <ul>
 <li>Bei <strong>Autoencodern</strong> sorgt die <strong>diagonale Approximation beim Kodiervorgang</strong> zusammen mit der <strong>inhärenten Stochastizität</strong> für lokale <strong>Orthogonalität beim Dekodieren</strong>  [Rolinek et al, 2019]</li>
 </ul>
-<ul>
-<li>Der Unterschied besteht darin, dass bei der <strong>Ausgabe von Autoencodern</strong>, im Gegensatz zur PCA, die <strong>Koordinaten korreliert</strong> und <strong>nicht der Größe (im Hinblick auf die Varianz) nach absteigend sortiert sind</strong></li>
-</ul>
 
 </div>
 </div>
@@ -13343,13 +13340,7 @@ a.anchor-link {
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># import all necessary libs</span>
-<span class="kn">from</span> <span class="nn">__future__</span> <span class="k">import</span> <span class="n">print_function</span>
-<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
-<span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="nn">plt</span>
-<span class="kn">from</span> <span class="nn">scipy.stats</span> <span class="k">import</span> <span class="n">norm</span>
-<span class="kn">import</span> <span class="nn">tensorflow</span> <span class="k">as</span> <span class="nn">tf</span>
-<span class="c1"># we use Keras to implement, layer-by-layer the DVAE and PCA</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># we use Keras to implement, layer-by-layer the DVAE and PCA</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Input</span><span class="p">,</span> <span class="n">Dense</span><span class="p">,</span> <span class="n">Lambda</span>
 <span class="kn">from</span> <span class="nn">keras.models</span> <span class="k">import</span> <span class="n">Model</span>
 <span class="kn">from</span> <span class="nn">keras</span> <span class="k">import</span> <span class="n">backend</span> <span class="k">as</span> <span class="n">K</span>
@@ -13359,110 +13350,6 @@ a.anchor-link {
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Conv2D</span><span class="p">,</span> <span class="n">MaxPooling2D</span>
 <span class="kn">from</span> <span class="nn">keras.layers</span> <span class="k">import</span> <span class="n">Conv2DTranspose</span><span class="p">,</span><span class="n">Reshape</span>
 <span class="kn">from</span> <span class="nn">sklearn.decomposition</span> <span class="k">import</span> <span class="n">PCA</span>
-<span class="kn">import</span> <span class="nn">os</span>
-<span class="o">%</span><span class="k">matplotlib</span> inline
-<span class="n">os</span><span class="o">.</span><span class="n">environ</span><span class="p">[</span><span class="s2">&quot;PATH&quot;</span><span class="p">]</span> <span class="o">+=</span> <span class="n">os</span><span class="o">.</span><span class="n">pathsep</span> <span class="o">+</span> <span class="s1">&#39;C:/Program Files (x86)/Graphviz2.38/bin/&#39;</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-PCA">Grundlegende Mathematik der PCA<a class="anchor-link" href="#Grundlegende-Mathematik-der-PCA">&#182;</a></h2>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><p>Es sei $\{y_i\}^N_{i=1}$ eine Menge von $N$ Beobachtungs-Vektoren der Dimension $n$ mit $n\leq N$.</p>
-<p>Eine <strong>lineare Transformation</strong> eines <strong>endlich-dimensionalen</strong> Vektors kann als <strong>Matrix Multiplikation</strong> ausgedrückt werden:</p>
-$$ \begin{align} x_i = W y_i \end{align} $$<p></p>
-<p>mit $y_i \in R^{n}, x_i \in R^{m}$ und $W \in R^{nxm}$.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><ul>
-<li>Das $j-te$ Element in $x_i$ ist das <strong>Innere Produkt</strong> von $y_i$ und der $j-ten$ Spalte der Matrix $W$, welche wir durch $w_j$ bezeichen. Es sei $Y \in R^{nxN}$ die Matrix, welche wir durch horizontale Aneinanderreihung der Vektoren $\{y_i\}^N_{i=1}$ erhalten, </li>
-</ul>
-$$ Y = \begin{bmatrix} | ... | \\ y_1 ... y_N \\ | ... | \end{bmatrix} $$<ul>
-<li>Aus der <strong>linearen Transformation</strong> folgt:</li>
-</ul>
-$$ X = W^TY,  X_0 = W^TY_0, $$<p>wobei $Y_0$ die <strong>Matrix der zentrierten Elemente</strong> (d.h. wir subtrahieren den Mittelwert von jeder Beobachtung) bezeichnet.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Maximale-Varianzkomponenten,-Kovarianz-und-Dekorrelation">Maximale Varianzkomponenten, Kovarianz und Dekorrelation<a class="anchor-link" href="#Maximale-Varianzkomponenten,-Kovarianz-und-Dekorrelation">&#182;</a></h3><ul>
-<li>Wenn $W^T$ Transformation darstellt, welche die <strong>Hauptkomponentenanalyse</strong> bezeichnet, so bezeichnen wir $W = P$. Jede Spalte der Matrix $P$, welche durch  $\{p_j\}^n_{j=1}$ bezeichnen, ist ein <strong>Ladungs-Vektor</strong>, wohingegen jeder transformierte Vektor $\{x_i\}^N_{i=1}$ eine <strong>Hauptkomponente</strong> ist.</li>
-</ul>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Dimensionsreduzierung,-Komprimierung">Dimensionsreduzierung, Komprimierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung">&#182;</a></h3><p>PCA wird zur <strong>Dimensions-Reduktion</strong> verwendet, da sie durch die durch eine lineare Transformation die <strong>Anzahl der Variablen reduziert</strong>. Dies wird erreicht, indem man die ersten $m$ Hauptkomponenten $(m &lt; n)$ erhält und die folgende Gleichung anwendet:</p>
-$$ X_m = P_m^TY$$<p>Da nur die ersten $m$ Hauptkomponenten erhalten werden, <strong>verliert</strong> PCA <strong>information</strong> (d.h. <strong>verlustreiche Komprimierung</strong>). Der <strong>Verlust</strong> wird jedoch durch die <strong>Maximierung der Komponenten-Varianzen minimiert</strong>.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Minimaler-quadratischer-Gesamtrekonstruktionsfehler">Minimaler quadratischer Gesamtrekonstruktionsfehler<a class="anchor-link" href="#Minimaler-quadratischer-Gesamtrekonstruktionsfehler">&#182;</a></h3><p>Die Transformations-Matrix $P_m$ kann ebenfalls durch Lösung der folgenden Gleichung berechnet werden:</p>
-$$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ die Frobenius-Norm bezeichnet.</p>
-<p>Daraus folgt, dass $P_m$ <strong>jeden zentrierten Vektor</strong> der Länge $n$ in einen Vektor der Länge $m$ mit ($ m &lt; n$) derart <strong>komprimiert</strong>, dass die <strong>Summe des quadratischen Rekonstruktions-Fehlers minimiert wird</strong>.</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<h3 id="Skalierung">Skalierung<a class="anchor-link" href="#Skalierung">&#182;</a></h3><p>Zur Berechung der $m$ größten Eigenwerte von $Y_0Y_0^T$ können viele verschiedene <strong>iterative Algorithmen</strong> eingesetzt werden</p>
-<ul>
-<li>QR Algorithmen</li>
-<li>Jacobi Algorithmus</li>
-<li>Power methode</li>
-<li>Singulärwert-Zerlegung (Singular Value Decomposition, SVD)</li>
-</ul>
-<p>Für <strong>sehr große Datenmengen</strong> eignen sich diese Algorithmen <strong>nicht</strong>!</p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># analytical PCA of the training set</span>
-<span class="k">def</span> <span class="nf">analytical_pca</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
-    <span class="c1"># variance to explain</span>
-    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
-    <span class="c1"># apply PCA</span>
-    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="c1"># extract the components </span>
-    <span class="n">loadings</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
-    <span class="c1"># apply the transformation</span>
-    <span class="n">components</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
-    <span class="c1"># reconstruct from components for visualization</span>
-    <span class="n">filtered</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">filtered</span>
 </pre></div>
 
     </div>
@@ -13527,29 +13414,6 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 </div>
 
 </div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># display the images (28x28 px)</span>
-<span class="n">digit_size</span> <span class="o">=</span> <span class="mi">28</span>
-<span class="n">figure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">digit_size</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span> <span class="n">digit_size</span> <span class="o">*</span> <span class="n">n_images</span><span class="p">))</span>
-<span class="n">showidx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_train</span><span class="p">,</span><span class="n">n_images</span><span class="p">)</span>
-<span class="c1"># display input, noisy input</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">showidx</span><span class="p">):</span>
-    <span class="n">figure</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_train</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span>
-    <span class="n">figure</span><span class="p">[</span><span class="mi">28</span><span class="p">:</span> <span class="mi">56</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">noise_train</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span><span class="o">*</span><span class="mi">2</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="n">n_images</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div><div class="fragment">
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13557,7 +13421,91 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h2 id="Grundlegende-Mathematik-der-PCA">Grundlegende Mathematik der PCA<a class="anchor-link" href="#Grundlegende-Mathematik-der-PCA">&#182;</a></h2>
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><p>Es sei $\{y_i\}^N_{i=1}$ eine Menge von $N$ Beobachtungs-Vektoren der Dimension $n$ mit $n\leq N$.</p>
+<p>Eine <strong>lineare Transformation</strong> eines <strong>endlich-dimensionalen</strong> Vektors kann als <strong>Matrix Multiplikation</strong> ausgedrückt werden:</p>
+$$ \begin{align} x_i = W y_i \end{align} $$<p></p>
+<p>mit $y_i \in R^{n}, x_i \in R^{m}$ und $W \in R^{nxm}$.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Lineare-Transformation">Lineare Transformation<a class="anchor-link" href="#Lineare-Transformation">&#182;</a></h3><ul>
+<li>Das $j-te$ Element in $x_i$ ist das <strong>Innere Produkt</strong> von $y_i$ und der $j-ten$ Spalte der Matrix $W$, welche wir durch $w_j$ bezeichen. Es sei $Y \in R^{nxN}$ die Matrix, welche wir durch horizontale Aneinanderreihung der Vektoren $\{y_i\}^N_{i=1}$ erhalten, </li>
+</ul>
+$$ Y = \begin{bmatrix} | ... | \\ y_1 ... y_N \\ | ... | \end{bmatrix} $$<ul>
+<li>Aus der <strong>linearen Transformation</strong> folgt:</li>
+</ul>
+$$ X = W^TY,  X_0 = W^TY_0, $$<p>wobei $Y_0$ die <strong>Matrix der zentrierten Elemente</strong> (d.h. wir subtrahieren den Mittelwert von jeder Beobachtung) bezeichnet, und <strong>Kovarianzmatrix</strong> $Y_0Y_0^T$.</p>
+<p>Wenn $W^T$ Transformation darstellt, welche die <strong>Hauptkomponentenanalyse</strong> bezeichnet, so bezeichnen wir $W = P$.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Dimensionsreduzierung,-Komprimierung">Dimensionsreduzierung, Komprimierung<a class="anchor-link" href="#Dimensionsreduzierung,-Komprimierung">&#182;</a></h3><p>PCA wird zur <strong>Dimensions-Reduktion</strong> verwendet, da sie durch die durch eine lineare Transformation die <strong>Anzahl der Variablen reduziert</strong>. Dies wird erreicht, indem man die ersten $m$ Hauptkomponenten $(m &lt; n)$ erhält und die folgende Gleichung anwendet:</p>
+$$ X_m = P_m^TY$$<p>Da nur die ersten <strong>$m$ Hauptkomponenten erhalten</strong> werden, <strong>verliert</strong> PCA <strong>information</strong> (d.h. <strong>verlustreiche Komprimierung</strong>).</p>
+<p>Der <strong>Verlust</strong> ( <em>Summe des quadratischen Rekonstruktions-Fehlers</em> ) wird jedoch durch die <strong>Maximierung der Komponenten-Varianzen minimiert</strong></p>
+$$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ die Frobenius-Norm bezeichnet.</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<h3 id="Skalierung">Skalierung<a class="anchor-link" href="#Skalierung">&#182;</a></h3><p>Zur Berechung der PCA können viele verschiedene <strong>iterative Algorithmen</strong> eingesetzt werden</p>
+<ul>
+<li>QR Algorithmen</li>
+<li>Jacobi Algorithmus</li>
+<li>Power methode</li>
+<li>Singulärwert-Zerlegung (Singular Value Decomposition, SVD)</li>
+</ul>
+<p>Für <strong>sehr große Datenmengen</strong> eignen sich diese Algorithmen <strong>nicht</strong>!</p>
+
+</div>
+</div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># analytical PCA of the training set</span>
+<span class="k">def</span> <span class="nf">analytical_pca</span><span class="p">(</span><span class="n">y</span><span class="p">):</span>
+    <span class="c1"># variance to explain</span>
+    <span class="n">pca</span> <span class="o">=</span> <span class="n">PCA</span><span class="p">(</span><span class="mf">0.7</span><span class="p">)</span>
+    <span class="c1"># apply PCA</span>
+    <span class="n">pca</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="c1"># extract the components </span>
+    <span class="n">loadings</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">components_</span>
+    <span class="c1"># apply the transformation</span>
+    <span class="n">components</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">transform</span><span class="p">(</span><span class="n">y</span><span class="p">)</span>
+    <span class="c1"># reconstruct from components for visualization</span>
+    <span class="n">filtered</span> <span class="o">=</span> <span class="n">pca</span><span class="o">.</span><span class="n">inverse_transform</span><span class="p">(</span><span class="n">components</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">filtered</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13582,16 +13530,6 @@ $$ \min_{W \in R^{nxm}} \| Y_0 - WW^TY_0 \|_F^2, W^TW = I_{mxm}$$<p>wobei $F$ di
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>Die <strong>Parameter $(\theta, \phi)$ werden im Verlauf des Training derart optimiert</strong>, dass ein den Eingangsdaten möglichst ähnliches Ergebnis , $x \approx f_\theta(g_\phi(x))$, produziert wird. In anderen Worten: <strong>die Indentitäts-Funktion wird erlernt</strong>.</p>
-<p><strong>Metriken um die Ähnlichkeit zwischen Eingangsdaten und Rekonstruktion</strong>: <strong>Cross-Entropy (bei sigmoid Aktivierungsfuntionen)</strong>, <strong>mittlere quadratische Fehler (MSE)</strong> etc.:</p>
-$$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="autoencoder.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h1 id="Denoising-Variational-Autoencoders-(DVAE)">Denoising Variational Autoencoders (DVAE)<a class="anchor-link" href="#Denoising-Variational-Autoencoders-(DVAE)">&#182;</a></h1>
 </div>
 </div>
@@ -13601,20 +13539,6 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="text_cell_render border-box-sizing rendered_html">
 <p>Das Funktionsprinzip <strong>unterscheidet sich</strong> vom grundlegenden Autoencoder dahingehend, dass ein gewisses Maß an <strong>Störrauschen</strong>  (einer <strong>gewissen Wahrscheinlichkeitsverteilung</strong> folgend) den <strong>Eingangsdaten hinzugefügt wird</strong> und dass die <strong>verborgenen Ebenen</strong> dieses Rauschen <strong>ausgleichen muss</strong> um die Eingangsdaten zu <strong>rekonstruieren</strong> [Im, Bengio et al., 2017, Kingma et al., 2017].
 <img src="denoising-variational-autoencoder.png" alt=""></p>
-
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p>Für jeden gestörten Eingangsvektor $\tilde x$ eines originalen Vektors $x$ der Dimension $d$, generiert das neuronale Netz eine Rekonstruktion $x'$ durch:</p>
-<ul>
-<li><strong>Kodierung der Eingangsdaten</strong>, welche die Abbildung als Wahrscheinlichkeit der Schätzung von $z$ unter Verwendung der Eingangsdaten darstellt</li>
-<li>dies liefert eine <strong>komprimierte Kodierung in der dünnsten Netzwerk-Ebene</strong> $z$, welche der Verteilung $q_\phi(z|x)$ folgt</li>
-<li><strong>Dekodierung der komprimierten Eingangsdaten</strong> an der Ausgangsebene unter Einhaltung des <strong>Beobachtungs-Modells</strong> $p_\theta(x|z)$</li>
-</ul>
-<p><img src="denoising-variational-autoencoder.png" alt=""></p>
 
 </div>
 </div>
@@ -13635,27 +13559,6 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <span class="n">h</span><span class="o">=</span><span class="n">Flatten</span><span class="p">()(</span><span class="n">pool_2</span><span class="p">)</span>
 <span class="n">z_mean</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">)(</span><span class="n">h</span><span class="p">)</span>
 <span class="n">z_log_var</span> <span class="o">=</span> <span class="n">Dense</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">)(</span><span class="n">h</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Implement the DVAE</span>
-<span class="c1"># reparameterization trick</span>
-<span class="k">def</span> <span class="nf">sampling</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
-    <span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span> <span class="o">=</span> <span class="n">args</span>
-    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">z_mean</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">latent_dim</span><span class="p">),</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
-                              <span class="n">stddev</span><span class="o">=</span><span class="n">epsilon_std</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">z_mean</span> <span class="o">+</span> <span class="n">K</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z_log_var</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span>
-
-<span class="n">z</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span><span class="n">sampling</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,))([</span><span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span><span class="p">])</span>
 </pre></div>
 
     </div>
@@ -13690,13 +13593,6 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<h2 id="Grundlegende-Mathematik-der-DVAE">Grundlegende Mathematik der DVAE<a class="anchor-link" href="#Grundlegende-Mathematik-der-DVAE">&#182;</a></h2>
-</div>
-</div>
-</div></section></section><section><section>
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
 <h2 id="DVAE">DVAE<a class="anchor-link" href="#DVAE">&#182;</a></h2><ul>
 <li>DVAE <strong>Verlustfunktion</strong> beinhaltet die Erstellung von Beispielen aus $z \backsim q_\phi(z|x)$. Dies ist ein <strong>stochastischer Prozess</strong> und eignet sich daher <strong>nicht zur Fehlerrückführung</strong>.</li>
 </ul>
@@ -13709,6 +13605,27 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 
 </div>
 </div>
+</div></section></section><section><section>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Implement the DVAE</span>
+<span class="c1"># reparameterization trick</span>
+<span class="k">def</span> <span class="nf">sampling</span><span class="p">(</span><span class="n">args</span><span class="p">):</span>
+    <span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span> <span class="o">=</span> <span class="n">args</span>
+    <span class="n">epsilon</span> <span class="o">=</span> <span class="n">K</span><span class="o">.</span><span class="n">random_normal</span><span class="p">(</span><span class="n">shape</span><span class="o">=</span><span class="p">(</span><span class="n">K</span><span class="o">.</span><span class="n">shape</span><span class="p">(</span><span class="n">z_mean</span><span class="p">)[</span><span class="mi">0</span><span class="p">],</span> <span class="n">latent_dim</span><span class="p">),</span> <span class="n">mean</span><span class="o">=</span><span class="mf">0.</span><span class="p">,</span>
+                              <span class="n">stddev</span><span class="o">=</span><span class="n">epsilon_std</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">z_mean</span> <span class="o">+</span> <span class="n">K</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">z_log_var</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="n">epsilon</span>
+
+<span class="n">z</span> <span class="o">=</span> <span class="n">Lambda</span><span class="p">(</span><span class="n">sampling</span><span class="p">,</span> <span class="n">output_shape</span><span class="o">=</span><span class="p">(</span><span class="n">latent_dim</span><span class="p">,))([</span><span class="n">z_mean</span><span class="p">,</span> <span class="n">z_log_var</span><span class="p">])</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
 </div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
@@ -13745,7 +13662,7 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 </div>
 </div>
 
-</div><div class="fragment">
+</div></section></section><section><section>
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
@@ -13753,39 +13670,16 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 
 </div>
 </div>
-</div></div></section></section><section><section>
+</div></section></section><section><section>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
 <div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Train the DVAE</span>
-<span class="n">dvae</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">noise_train</span><span class="p">,</span><span class="n">x_train</span><span class="p">,</span>
-        <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span>
-        <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span>
-        <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span>
-        <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">noise_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">))</span>
-</pre></div>
+<span class="n">dvae</span><span class="o">.</span><span class="n">fit</span><span class="p">(</span><span class="n">noise_train</span><span class="p">,</span><span class="n">x_train</span><span class="p">,</span>  <span class="n">shuffle</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">epochs</span><span class="o">=</span><span class="n">epochs</span><span class="p">,</span> <span class="n">batch_size</span><span class="o">=</span><span class="n">batch_size</span><span class="p">,</span> <span class="n">validation_data</span><span class="o">=</span><span class="p">(</span><span class="n">noise_test</span><span class="p">,</span> <span class="n">x_test</span><span class="p">))</span>
 
-    </div>
-</div>
-</div>
-
-</div><div class="fragment">
-<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
-</div><div class="inner_cell">
-<div class="text_cell_render border-box-sizing rendered_html">
-<p><img src="training-progress.png" alt=""></p>
-
-</div>
-</div>
-</div></div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Comparison PCA vs. DVAE</span>
+<span class="c1"># Comparison PCA vs. DVAE</span>
 <span class="c1"># testing the DVAE</span>
 <span class="n">num_test</span><span class="o">=</span><span class="mi">10000</span>
 <span class="n">showidx</span><span class="o">=</span><span class="n">np</span><span class="o">.</span><span class="n">random</span><span class="o">.</span><span class="n">randint</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">num_test</span><span class="p">,</span><span class="n">n_images</span><span class="p">)</span>
@@ -13793,30 +13687,6 @@ $$ \frac{1}{n} \sum_{i=1}^{n}(x^{i} - f_\theta(g_\phi(x^{i}))^2$$<p><img src="au
 
 <span class="c1"># prepare data for testing PCA</span>
 <span class="n">pcaOutput</span> <span class="o">=</span> <span class="n">analytical_pca</span><span class="p">(</span><span class="n">pcaInputTest</span><span class="p">)</span>
-</pre></div>
-
-    </div>
-</div>
-</div>
-
-</div></section></section><section><section>
-<div class="cell border-box-sizing code_cell rendered">
-<div class="input">
-<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
-<div class="inner_cell">
-    <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="c1"># Display results</span>
-<span class="n">digit_size</span> <span class="o">=</span> <span class="mi">28</span>
-<span class="n">figure</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros</span><span class="p">((</span><span class="n">digit_size</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="n">digit_size</span> <span class="o">*</span> <span class="n">n_images</span><span class="p">))</span>
-<span class="k">for</span> <span class="n">i</span><span class="p">,</span><span class="n">idx</span> <span class="ow">in</span> <span class="nb">enumerate</span> <span class="p">(</span><span class="n">showidx</span><span class="p">):</span>
-    <span class="n">figure</span><span class="p">[</span><span class="mi">0</span><span class="p">:</span> <span class="mi">28</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_test</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span> <span class="c1"># input data</span>
-    <span class="n">figure</span><span class="p">[</span><span class="mi">28</span><span class="p">:</span> <span class="mi">28</span> <span class="o">*</span> <span class="mi">2</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">noise_test</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span> <span class="c1"># noisy input data </span>
-    <span class="n">figure</span><span class="p">[</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">2</span><span class="p">:</span> <span class="mi">28</span> <span class="o">*</span> <span class="mi">3</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">x_out</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span> <span class="c1"># DVAE output</span>
-    <span class="n">figure</span><span class="p">[</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">3</span><span class="p">:</span> <span class="mi">28</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span><span class="n">i</span> <span class="o">*</span><span class="mi">28</span><span class="p">:</span> <span class="p">(</span><span class="n">i</span> <span class="o">+</span> <span class="mi">1</span><span class="p">)</span> <span class="o">*</span> <span class="mi">28</span><span class="p">]</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">reshape</span><span class="p">(</span><span class="n">pcaOutput</span><span class="p">[</span><span class="n">idx</span><span class="p">],</span> <span class="p">[</span><span class="mi">28</span><span class="p">,</span> <span class="mi">28</span><span class="p">])</span> <span class="c1"># PCA output</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">figure</span><span class="p">(</span><span class="n">figsize</span><span class="o">=</span><span class="p">(</span><span class="mi">28</span> <span class="o">*</span> <span class="mi">4</span><span class="p">,</span> <span class="mi">28</span><span class="o">*</span><span class="n">n_images</span><span class="p">))</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">imshow</span><span class="p">(</span><span class="n">figure</span><span class="p">,</span> <span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;Greys_r&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">savefig</span><span class="p">(</span><span class="s1">&#39;inference_output.png&#39;</span><span class="p">)</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
 </pre></div>
 
     </div>
